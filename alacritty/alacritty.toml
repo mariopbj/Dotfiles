@@ -1,0 +1,73 @@
+[window]
+opacity = 0.95
+padding = { x = 0, y = 0 }
+dynamic_padding = false
+decorations = "None"
+startup_mode = "Windowed"
+
+[font]
+size = 7.5
+
+[font.normal]
+family = "DejaVu Sans Mono"
+style = "Regular"
+
+[font.bold]
+family = "DejaVu Sans Mono"
+style = "Bold"
+
+[font.italic]
+family = "DejaVu Sans Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "DejaVu Sans Mono"
+style = "Bold Italic"
+
+[colors.primary]
+foreground = "#ffffff"
+background = "#000000"
+
+[colors.cursor]
+text = "#000000"
+cursor = "#ffffff"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[terminal]
+osc52 = "CopyPaste"
+
+[mouse]
+hide_when_typing = true
+
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.normal]
+black   = "#000000"
+red     = "#cd0000"
+green   = "#00cd00"
+yellow  = "#cdcd00"
+blue    = "#0000cd"
+magenta = "#cd00cd"
+cyan    = "#00cdcd"
+white   = "#e5e5e5"
+
+[colors.bright]
+black   = "#7f7f7f"
+red     = "#ff0000"
+green   = "#00ff00"
+yellow  = "#ffff00"
+blue    = "#5c5cff"
+magenta = "#ff00ff"
+cyan    = "#00ffff"
+white   = "#ffffff"
+
+[keyboard]
+bindings = [
+    { key = "C", mods = "Control|Alt", action = "Copy" },
+    { key = "V", mods = "Control|Alt", action = "Paste" },
+]
