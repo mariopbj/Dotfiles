@@ -14,7 +14,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 0
+font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -23,18 +23,16 @@ font pango:monospace 0
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id bash ~/MeuSetup/scripts/start_bars.sh &
-exec_always --no-startup-id bash ~/MeuSetup/scripts/mudar_wallpaper.sh --restore
-exec --no-startup-id python3 ~/MeuSetup/scripts/btc-scripts/btc-back.py
-exec_always --no-startup-id picom --experimental-backends
+exec noctalia
 exec --no-startup-id lxpolkit
+
+input type:keyboard {
+  xkb_layout "br"
+  xkb_model "abnt2"
+}
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/Imagens/river-forest-temple-blur.png
 
 # Controle de volume com F3, F2, F1
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -53,28 +51,28 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+tiling_drag enable
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec foot
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # tirar print da tela (flameshot)
-bindsym Print exec flameshot gui
+bindsym Print exec noctalia msg screenshot-annotate
 
 # abrir o brave
 bindsym $mod+Shift+b exec brave-browser
 
-# abrir o Rofi
-bindsym $mod+d exec --no-startup-id rofi -show drun
+# abrir o launcher do noctalia
+bindsym $mod+d exec noctalia msg panel-toggle launcher
 
-# Mudar Wallpaper Script
-bindsym $mod+Shift+m exec bash ~/MeuSetup/scripts/mudar_wallpaper.sh
+# Mudar wallpaper
+bindsym $mod+Shift+m exec noctalia msg panel-toggle wallpaper
 
-# Abrir o powermenu
-bindsym $mod+Shift+BackSpace exec bash ~/MeuSetup/scripts/powermenu.sh
+#Powermenu do noctalia
+bindsym $mod+Shift+BackSpace exec noctalia msg panel-toggle control-center
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
@@ -208,15 +206,14 @@ bindsym $mod+r mode "resize"
 
 #bordas
 for_window [class="^.*"] border pixel 3
-new_window 1pixel
+default_border pixel 1
 client.focused #ffffff #ffffff #ffffff #ffffff	   #ffffff
 
 #gap
-gaps inner 10
+gaps top 10
 gaps outer 1
-gaps top 36
+gaps inner 10
 
-#iniciar i3bar
-#bar {
-#	status_command i3status
-#}
+
+#include ~/.config/sway/noctalia
+
